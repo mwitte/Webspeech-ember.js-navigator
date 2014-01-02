@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "Speech",
   "version": "0.0.0",
   "dependencies": {
     "ember": "1.3.0-beta.1",

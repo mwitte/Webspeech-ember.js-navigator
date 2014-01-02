@@ -1,4 +1,4 @@
-Blog.SpeechRecognition = Ember.Object.create({
+Speech.SpeechRecognition = Ember.Object.create({
 
     events: Ember.A(),
 
@@ -13,7 +13,7 @@ Blog.SpeechRecognition = Ember.Object.create({
         // only if it's a valid result and the confidence is high
         if(result.length > 0 && result[0].confidence && result[0].confidence > 0.5){
             var lastResult = result[0];
-            var handle = Blog.SpeechCommander.process(lastResult.transcript);
+            var handle = Speech.SpeechCommander.process(lastResult.transcript);
 
         }
 

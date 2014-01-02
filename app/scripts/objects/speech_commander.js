@@ -1,4 +1,4 @@
-Blog.SpeechCommander = Ember.Object.create({
+Speech.SpeechCommander = Ember.Object.create({
 
     /**
      * Keyword which needs to be the suffix for a handle

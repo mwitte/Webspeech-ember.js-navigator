@@ -1,4 +1,4 @@
-Blog.IndexRoute = Blog.AbstractRoute.extend({
+Speech.IndexRoute = Speech.AbstractRoute.extend({
     setupController: function(controller, model){
         this._super();
     }

@@ -1,4 +1,4 @@
-Blog.ContactRoute = Blog.AbstractRoute.extend({
+Speech.ContactRoute = Speech.AbstractRoute.extend({
     setupController: function(controller, model){
         this._super();
     }

@@ -1,6 +1,4 @@
-Blog.Router.map(function () {
-
+Speech.Router.map(function () {
     this.route('disclaimer');
     this.route('contact');
-
 });
