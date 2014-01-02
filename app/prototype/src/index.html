@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Webspeech prototype</title>
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/jquery-color.min.js"></script>
+        <script src="scripts/webspeech.js"></script>
+</head>
+<body>
+<div>
+    <h1>Docu in scripts/webspeech.js inline</h1>
+    <p>
+        Damit du nicht permanent die Erlaubnis für die Spracherkennung im Chrome geben musst empehle ich dir Chrome
+        komplett zu schließen und anschließend per Terminal mit folgendem Befehl zu starten:
+    </p>
+    <p>open -a Google\ Chrome --args --disable-user-media-security</p>
+    <p>
+        Dies deaktiviert die Sicherheitsabfrage für die Spracherkennung für diese Sitzung. Wenn du Chrome komplett
+        beendest und normal startest ist alles wieder wie vorher.
+    </p>
+    <p>
+        Um Javascirpt zu debuggen kannst du im Chrome die Entwicklertools öffnen und in den Tab "Console" wechseln.
+        Wenn du un im Javascript console.log() oder console.dir() aufrufst wird das übergebene Objekt in der Konsole
+        ausgegeben. In der Funktion "processTransScript" am Anfang der webspeech.js kannst du dich mal austoben.
+    </p>
+</div>
+<div id="debug">
+    <h2>Debug:</h2>
+
+    <h3>Events:</h3>
+    <ul class="events"></ul>
+
+    <h3>Last:</h3>
+    <ul class="last"></ul>
+
+    <h3>History:</h3>
+    <ul class="history"></ul>
+</div>
+</body>
+</html>

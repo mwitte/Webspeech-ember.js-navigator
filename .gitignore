@@ -1,0 +1,12 @@
+node_modules
+temp
+dist
+.sass-cache
+.tmp
+app/bower_components
+.DS_Store
+.editorconfig
+.idea
+.jshintrc
+.sass-cache
+
