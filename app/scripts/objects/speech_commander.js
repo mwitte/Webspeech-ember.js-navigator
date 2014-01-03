@@ -21,6 +21,11 @@ Speech.SpeechCommander = Ember.Object.create({
     threshold: 1000,
 
     /**
+     * Contains the last executed command
+     */
+    lastCommand: '',
+
+    /**
      * Process the given token
      * @param token
      * @returns {boolean}
@@ -35,6 +40,7 @@ Speech.SpeechCommander = Ember.Object.create({
             if(this.get('processing') === false){
                 this.set('processing', true);
                 Ember.debug('Command was: ' + this.get('keyWord') +' '+ handle);
+                this.set('lastCommand', this.get('keyWord') +' '+ handle);
 
                 Ember.$('#' + this.get('labelClass') + '-' + handle).click();
 

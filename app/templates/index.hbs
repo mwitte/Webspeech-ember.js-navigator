@@ -1,12 +1,33 @@
 <div class="well">
     <h1>Startseite</h1>
-    <p>Bavaria ipsum dolor sit amet Semmlkneedl hea aba Watschnpladdla Gams Radi de do Deandlgwand i
-        bin a woschechta Bayer! Nimmds jedza san Landla Wurscht i hab an gschmeidig, auffi griaß God
-        beinand naa. Wurscht heitzdog zünftig mogsd a Bussal imma Wurschtsolod Kuaschwanz? Di Fünferl
-        weida a Prosit der Gmiadlichkeit, is des liab. Mei Fünferl a Prosit der Gmiadlichkeit, liberalitas
-        Bavariae Prosd. Hod d’ hob, lem und lem lossn do! Biakriagal wui Haferl Ohrwaschl no wea ko, dea ko,
-        glei samma. Schdarmbeaga See Ramasuri allerweil, des muas ma hoid kenna! Hoam Brodzeid Mamalad
-        boarischer blärrd Meidromml. Nois mim Radl foahn nia need Hetschapfah hea moand! Baamwach a
-        liabs Deandl gscheid, Maderln. Gstanzl vui huift vui nia gwihss ham Kaiwe Haferl mogsd a Bussal,
-        g’hupft wia gsprunga.</p>
+    <h3>How to use:</h3>
+    <p>
+        You are now able to navigate through the interactive elements. For this case I've added programmatically
+        numbered labels which can be referenced by a special key word. This key word is <b>{{Speech.SpeechCommander.keyWord}}</b>
+        which is specified in the Speech.SpeechCommander object. <br/>
+        So now you are able to say something like "<b>{{Speech.SpeechCommander.keyWord}} one</b>" to reference the first
+        interactive element with the label "1".
+    </p>
+    <h5>Hints:</h5>
+    <ul>
+        <li>Enable the checkbox in the right top for some debugging information</li>
+        <li>
+            Start your chrome unsecure(user-media-security) to disable this annoying security question. Kill all running chrome
+            tasks and restart with the arg <code>disable-user-media-security</code>. On OSx close chrome completely(CMD+Q) and restart
+            chrome from commandline with <code>open -a Google\ Chrome --args --disable-user-media-security</code>.
+        </li>
+    </ul>
+    <h3>Design decisions</h3>
+    <h4>Restarting the recording</h4>
+    <p>
+        Sometimes the recognition stops because of there is no word spoken a long time or the webspeech api crashes due some
+        error. For this case our speech recognition restarts automatically after a short sleep time.
+    </p>
+    <h4>Why this keyword with these labels?</h4>
+    <p>
+        The webspeech api is not perfect. Often it recognizes some words wrong. For this case we chose a special keyword with
+        a numbered index. This is more fault tolerant then the user speaks the label text.<br/>
+        The index labels are added programmatically by the Speech.SpeechCommander object so whe hadn't touch our original html
+        templates. To fulfil this solution we had to execute this method after every route transition.
+    </p>
 </div>

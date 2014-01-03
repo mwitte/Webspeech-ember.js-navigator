@@ -16,7 +16,13 @@
                     </div>
                     <div class="col-md-3">
                         <h3>Settings</h3>
-                        <b>Current Keyword: </b> {{Speech.SpeechCommander.keyWord}}
+                        <ul>
+                            <li><b>Keyword: </b> {{Speech.SpeechCommander.keyWord}}</li>
+                            <li><b>Threshold: </b> {{Speech.SpeechCommander.threshold}}ms</li>
+                            <li><b>Class for labels: </b> {{Speech.SpeechCommander.labelClass}}</li>
+                            <li><b>Expected language: </b> {{Speech.SpeechRecognition.lang}}</li>
+                        </ul>
+
                     </div>
                     <div class="col-md-6">
                         <h3>Last Result</h3>
@@ -27,6 +33,8 @@
                                 </li>
                             {{/each}}
                         </ul>
+                        <h3>Last executed Command</h3>
+                        <b>{{Speech.SpeechCommander.lastCommand}}</b>
                     </div>
                 </div>
                 <div class="row">

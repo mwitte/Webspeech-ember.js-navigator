@@ -4,6 +4,8 @@ Speech.SpeechRecognition = Ember.Object.create({
 
     lang: 'de',
 
+    minConfidence: 0.3,
+
     init: function(){
         this.listen();
     },
@@ -11,7 +13,7 @@ Speech.SpeechRecognition = Ember.Object.create({
     handleLastResult: function(result) {
         var _this = this;
         // only if it's a valid result and the confidence is high
-        if(result.length > 0 && result[0].confidence && result[0].confidence > 0.5){
+        if(result.length > 0 && result[0].confidence && result[0].confidence > this.get('minConfidence')){
             var lastResult = result[0];
             var handle = Speech.SpeechCommander.process(lastResult.transcript);
 
