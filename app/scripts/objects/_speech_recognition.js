@@ -2,21 +2,35 @@ Speech.SpeechRecognition = Ember.Object.create({
 
     events: Ember.A(),
 
+    /**
+     * Language for speech recognition, should be changeable by user in a further step
+     */
     lang: 'de',
 
+    /**
+     * Minimal confidence for a successful interaction
+     */
     minConfidence: 0.3,
 
+    /**
+     * Get called on object initialisation
+     */
     init: function(){
+        // Start listening with web speech api
         this.listen();
     },
 
-    handleLastResult: function(result) {
+    /**
+     * Process the last result
+     * @param result
+     */
+    processLastResult: function(result) {
         var _this = this;
-        // only if it's a valid result and the confidence is high
+        // only if it's a valid result and the confidence is high enough
         if(result.length > 0 && result[0].confidence && result[0].confidence > this.get('minConfidence')){
             var lastResult = result[0];
+            // process with the last result in the SpeechCommander
             var handle = Speech.SpeechCommander.process(lastResult.transcript);
-
         }
 
     },
@@ -26,6 +40,7 @@ Speech.SpeechRecognition = Ember.Object.create({
      */
     listen: function(){
 
+        // save current context
         var _this = this;
 
         /**
@@ -66,41 +81,47 @@ Speech.SpeechRecognition = Ember.Object.create({
         recognition.start();
 
 
+        /**
+         * Bind all Web Speech Api events with custom functionality
+         */
         recognition.onaudiostart = function (event) {
             _this.handleEvent('audiostart', null, _this);
-        }
+        };
         recognition.onspeechstart = function (event) {
             _this.handleEvent('speechstart', null, _this);
-        }
+        };
         recognition.onspeechend = function (event) {
             _this.handleEvent('speechend', null, _this);
-        }
+        };
         recognition.onsoundend = function (event) {
             _this.handleEvent('soundend', null, _this);
-        }
+        };
         recognition.onaudioend = function (event) {
             _this.handleEvent('audioend', null, _this);
-        }
+        };
         recognition.onnomatch = function (event) {
             _this.handleEvent('nomatch', null, _this);
-        }
+        };
         recognition.onerror = function (event) {
             _this.handleEvent('error', event, _this);
-        }
+        };
         recognition.onstart = function (event) {
             _this.handleEvent('start', null, _this);
-        }
+        };
         recognition.onend = function (event) {
             _this.handleEvent('end', null, _this);
             setTimeout(function() {
                 _this.listen();
             },1000);
-        }
+        };
 
         // event handler
         recognition.onresult = function (event) {
             _this.handleEvent('result', null, _this);
-            // build results as array, this is needed for ember for iteration
+            /**
+             * Transform given object to array, this makes everything easier ;)
+             * @type {*}
+             */
             var results = event.results;
             var resultsArray = Ember.A();
             for(var i = 0; i < results.length; i++) {
@@ -120,8 +141,10 @@ Speech.SpeechRecognition = Ember.Object.create({
             for(var i = 0; i < currentResult.length; i++) {
                 currentResultArray.push(currentResult[i]);
             }
+            // set current result
             _this.set('current', currentResultArray);
-            _this.handleLastResult(currentResultArray);
+            // do something with the current result
+            _this.processLastResult(currentResultArray);
         };
     },
 
